@@ -13,6 +13,12 @@
 		494A51FA24B483E70048C001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 494A51F924B483E70048C001 /* Assets.xcassets */; };
 		494A51FD24B483E70048C001 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 494A51FC24B483E70048C001 /* Preview Assets.xcassets */; };
 		494A520024B483E70048C001 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 494A51FE24B483E70048C001 /* LaunchScreen.storyboard */; };
+		494A520824B484370048C001 /* WaypointListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494A520724B484370048C001 /* WaypointListView.swift */; };
+		494A520A24B4844E0048C001 /* models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494A520924B4844E0048C001 /* models.swift */; };
+		494A520C24B485730048C001 /* WaypointRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494A520B24B485730048C001 /* WaypointRowView.swift */; };
+		494A520E24B486030048C001 /* constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494A520D24B486030048C001 /* constants.swift */; };
+		494A521024B489E20048C001 /* AddWaypointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494A520F24B489E20048C001 /* AddWaypointView.swift */; };
+		49B4883D24B4A1D700CA36C8 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B4883C24B4A1D700CA36C8 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +30,12 @@
 		494A51FC24B483E70048C001 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		494A51FF24B483E70048C001 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		494A520124B483E70048C001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		494A520724B484370048C001 /* WaypointListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaypointListView.swift; sourceTree = "<group>"; };
+		494A520924B4844E0048C001 /* models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = models.swift; sourceTree = "<group>"; };
+		494A520B24B485730048C001 /* WaypointRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaypointRowView.swift; sourceTree = "<group>"; };
+		494A520D24B486030048C001 /* constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constants.swift; sourceTree = "<group>"; };
+		494A520F24B489E20048C001 /* AddWaypointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWaypointView.swift; sourceTree = "<group>"; };
+		49B4883C24B4A1D700CA36C8 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,9 +68,15 @@
 		494A51F224B483E70048C001 /* WaypointHelper */ = {
 			isa = PBXGroup;
 			children = (
+				494A520F24B489E20048C001 /* AddWaypointView.swift */,
+				49B4883C24B4A1D700CA36C8 /* LocationManager.swift */,
 				494A51F324B483E70048C001 /* AppDelegate.swift */,
 				494A51F524B483E70048C001 /* SceneDelegate.swift */,
 				494A51F724B483E70048C001 /* ContentView.swift */,
+				494A520724B484370048C001 /* WaypointListView.swift */,
+				494A520B24B485730048C001 /* WaypointRowView.swift */,
+				494A520D24B486030048C001 /* constants.swift */,
+				494A520924B4844E0048C001 /* models.swift */,
 				494A51F924B483E70048C001 /* Assets.xcassets */,
 				494A51FE24B483E70048C001 /* LaunchScreen.storyboard */,
 				494A520124B483E70048C001 /* Info.plist */,
@@ -145,9 +163,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				494A520C24B485730048C001 /* WaypointRowView.swift in Sources */,
+				494A520A24B4844E0048C001 /* models.swift in Sources */,
 				494A51F424B483E70048C001 /* AppDelegate.swift in Sources */,
+				494A520E24B486030048C001 /* constants.swift in Sources */,
 				494A51F624B483E70048C001 /* SceneDelegate.swift in Sources */,
 				494A51F824B483E70048C001 /* ContentView.swift in Sources */,
+				494A520824B484370048C001 /* WaypointListView.swift in Sources */,
+				494A521024B489E20048C001 /* AddWaypointView.swift in Sources */,
+				49B4883D24B4A1D700CA36C8 /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +315,7 @@
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = WaypointHelper/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -312,6 +337,7 @@
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = WaypointHelper/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
