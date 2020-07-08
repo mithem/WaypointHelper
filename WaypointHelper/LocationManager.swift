@@ -13,9 +13,14 @@ class LocationManager: NSObject, ObservableObject {
     
     @Published var location: CLLocation?
     @Published var authorizationStatus: CLAuthorizationStatus
+    @Published var accuracyAuthorization: CLAccuracyAuthorization
+    @Published var trueAccuracy: CLLocationAccuracy
+    private var subscribers = [LocationManagerSubscriber]()
     
     override init() {
         authorizationStatus = .notDetermined
+        accuracyAuthorization = locationManager.accuracyAuthorization
+        trueAccuracy = .nan
         super.init()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
@@ -29,11 +34,19 @@ class LocationManager: NSObject, ObservableObject {
     func getAuthorizationStatus() -> CLAuthorizationStatus {
         return locationManager.authorizationStatus()
     }
+    
+    func subscribe(_ someone: LocationManagerSubscriber) {
+        subscribers.append(someone)
+    }
 }
 
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         location = locations.last
+        trueAccuracy = location!.horizontalAccuracy
+        for sub in subscribers {
+            sub.didUpdateLocation()
+        }
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
@@ -47,4 +60,8 @@ extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
     }
+}
+
+protocol LocationManagerSubscriber {
+    func didUpdateLocation()
 }

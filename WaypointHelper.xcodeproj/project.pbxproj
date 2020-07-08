@@ -19,6 +19,8 @@
 		494A520E24B486030048C001 /* constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494A520D24B486030048C001 /* constants.swift */; };
 		494A521024B489E20048C001 /* AddWaypointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494A520F24B489E20048C001 /* AddWaypointView.swift */; };
 		49B4883D24B4A1D700CA36C8 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B4883C24B4A1D700CA36C8 /* LocationManager.swift */; };
+		49CA668724B651D6005F0C6F /* shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CA668624B651D6005F0C6F /* shared.swift */; };
+		49CA668924B659EC005F0C6F /* WaypointMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CA668824B659EC005F0C6F /* WaypointMapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		494A520D24B486030048C001 /* constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constants.swift; sourceTree = "<group>"; };
 		494A520F24B489E20048C001 /* AddWaypointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWaypointView.swift; sourceTree = "<group>"; };
 		49B4883C24B4A1D700CA36C8 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		49CA668624B651D6005F0C6F /* shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shared.swift; sourceTree = "<group>"; };
+		49CA668824B659EC005F0C6F /* WaypointMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaypointMapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +79,8 @@
 				494A51F724B483E70048C001 /* ContentView.swift */,
 				494A520724B484370048C001 /* WaypointListView.swift */,
 				494A520B24B485730048C001 /* WaypointRowView.swift */,
+				49CA668824B659EC005F0C6F /* WaypointMapView.swift */,
+				49CA668624B651D6005F0C6F /* shared.swift */,
 				494A520D24B486030048C001 /* constants.swift */,
 				494A520924B4844E0048C001 /* models.swift */,
 				494A51F924B483E70048C001 /* Assets.xcassets */,
@@ -167,6 +173,8 @@
 				494A520A24B4844E0048C001 /* models.swift in Sources */,
 				494A51F424B483E70048C001 /* AppDelegate.swift in Sources */,
 				494A520E24B486030048C001 /* constants.swift in Sources */,
+				49CA668724B651D6005F0C6F /* shared.swift in Sources */,
+				49CA668924B659EC005F0C6F /* WaypointMapView.swift in Sources */,
 				494A51F624B483E70048C001 /* SceneDelegate.swift in Sources */,
 				494A51F824B483E70048C001 /* ContentView.swift in Sources */,
 				494A520824B484370048C001 /* WaypointListView.swift in Sources */,

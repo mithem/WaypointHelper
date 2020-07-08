@@ -23,12 +23,16 @@ struct WaypointListView: View {
     var body: some View {
         NavigationView {
             List {
+                Text("Accuracy: \(formatDistance(distance: locationManager.trueAccuracy) ?? "unkown")")
+                    .foregroundColor(.secondary)
                 ForEach(waypoints) { waypoint in
-                    WaypointRowView(waypoint: waypoint, distance: getDistance(for: waypoint))
+                    NavigationLink(destination: WaypointMapView(waypoint: waypoint)) {
+                        WaypointRowView(waypoint: waypoint, locationManager: locationManager)
+                    }
                 }
                 .onDelete { offsets in
-                    waypoints.remove(atOffsets: offsets)
-                    saveWaypoints()
+                        waypoints.remove(atOffsets: offsets)
+                        saveWaypoints()
                 }
                 Button(action: {
                     showResetWaypointsActionSheet = true
@@ -45,14 +49,19 @@ struct WaypointListView: View {
             .onDisappear(perform: saveWaypoints)
             .navigationBarTitle("My waypoints")
             .navigationBarItems(leading: Button(action: {
-                reverseWaypoints()
+                withAnimation {
+                    reverseWaypoints()
+                }
+                getLocation()
             }) {
                 if colorScheme == .dark {
                     Image(systemName: reversed ? "flag.slash.circle" : "flag.circle")
                         .foregroundColor(.white)
+                        .padding()
                 } else {
                     Image(systemName: reversed ? "flag.slash.circle" : "flag.circle")
                         .foregroundColor(.black)
+                        .padding()
                 }
             },trailing: Button(action: {
                 showingAddWaypointView = true
@@ -60,14 +69,18 @@ struct WaypointListView: View {
                 if colorScheme == .dark {
                     Image(systemName: "plus")
                         .foregroundColor(.white)
+                        .padding()
                 } else {
                     Image(systemName: "plus")
                         .foregroundColor(.black)
+                        .padding()
                 }
-                
             })
             .onAppear(perform: loadWaypoints)
             .onAppear(perform: getLocation)
+            .onAppear {
+                locationManager.subscribe(self)
+            }
             .actionSheet(isPresented: $showResetWaypointsActionSheet) {
                 ActionSheet(title: Text("Reset waypoints?"), message: Text("This action cannot be undone."), buttons: [.destructive(Text("Reset")){resetWaypoints()}, .cancel()])
             }
@@ -79,12 +92,6 @@ struct WaypointListView: View {
     
     func getLocation() {
         locationManager.requestLocation()
-        currentLocation = locationManager.location
-    }
-    
-    func getDistance(for waypoint: Waypoint) -> CLLocationDistance? {
-        guard let cl = currentLocation else { return nil }
-        return waypoint.location?.distance(from: cl)
     }
     
     func resetWaypoints() {
@@ -129,6 +136,12 @@ struct WaypointListView: View {
         let ud = UserDefaults()
         let waypointsArr = waypoints.map { waypoint in try! NSKeyedArchiver.archivedData(withRootObject: waypoint, requiringSecureCoding: true) }
         ud.set(waypointsArr, forKey: "waypoints")
+    }
+}
+
+extension WaypointListView: LocationManagerSubscriber {
+    func didUpdateLocation() {
+        currentLocation = locationManager.location
     }
 }
 

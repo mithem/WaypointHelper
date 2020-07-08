@@ -18,20 +18,23 @@ struct AddWaypointView: View {
     let locationManager: LocationManager
     
     var body: some View {
-        Form {
-            TextField("name", text: $name)
-            WaypointLocationInlineView(location: location)
-            ScrollView {
-                VStack(spacing: 20) {
-                    HStack {
-                        WaypointTypeImage(type: "arrow.up", delegate: self)
-                        WaypointTypeImage(type: "arrow.turn.up.left", delegate: self)
-                        WaypointTypeImage(type: "arrow.turn.up.right", delegate: self)
+        NavigationView {
+            Form {
+                TextField("name", text: $name)
+                WaypointLocationInlineView(location: location)
+                ScrollView {
+                    VStack(spacing: 20) {
+                        HStack {
+                            WaypointTypeImage(type: "arrow.up", delegate: self)
+                            WaypointTypeImage(type: "arrow.turn.up.left", delegate: self)
+                            WaypointTypeImage(type: "arrow.turn.up.right", delegate: self)
+                        }
                     }
                 }
             }
+            .onAppear(perform: getLocation)
+            .navigationTitle("New Waypoint")
         }
-        .onAppear(perform: getLocation)
     }
     
     func getLocation() {
@@ -79,7 +82,7 @@ struct WaypointLocationInlineView: View {
             if location != nil {
                 HStack {
                     Image(systemName: "location")
-                    Text("Location captured.")
+                    Text("Accuracy: \(formatDistance(distance: location?.horizontalAccuracy) ?? "unknown")")
                 }
             } else {
                 HStack {
