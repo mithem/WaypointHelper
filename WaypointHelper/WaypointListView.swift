@@ -17,12 +17,14 @@ struct WaypointListView: View {
     @State private var reversed = false
     @State private var resetBtnDisabled = true
     @State private var showResetWaypointsActionSheet = false
+    @StateObject var locationManager = LocationManager()
+    @State private var currentLocation: CLLocation?
     
     var body: some View {
         NavigationView {
             List {
                 ForEach(waypoints) { waypoint in
-                    WaypointRowView(waypoint: waypoint)
+                    WaypointRowView(waypoint: waypoint, distance: getDistance(for: waypoint))
                 }
                 .onDelete { offsets in
                     waypoints.remove(atOffsets: offsets)
@@ -65,13 +67,24 @@ struct WaypointListView: View {
                 
             })
             .onAppear(perform: loadWaypoints)
+            .onAppear(perform: getLocation)
             .actionSheet(isPresented: $showResetWaypointsActionSheet) {
                 ActionSheet(title: Text("Reset waypoints?"), message: Text("This action cannot be undone."), buttons: [.destructive(Text("Reset")){resetWaypoints()}, .cancel()])
             }
         }
         .sheet(isPresented: $showingAddWaypointView) {
-            AddWaypointView(delegate: self)
+            AddWaypointView(delegate: self, locationManager: locationManager)
         }
+    }
+    
+    func getLocation() {
+        locationManager.requestLocation()
+        currentLocation = locationManager.location
+    }
+    
+    func getDistance(for waypoint: Waypoint) -> CLLocationDistance? {
+        guard let cl = currentLocation else { return nil }
+        return waypoint.location?.distance(from: cl)
     }
     
     func resetWaypoints() {

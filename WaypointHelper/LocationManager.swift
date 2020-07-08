@@ -9,7 +9,7 @@ import Foundation
 import CoreLocation
 
 class LocationManager: NSObject, ObservableObject {
-    let locationManager = CLLocationManager()
+    private let locationManager = CLLocationManager()
     
     @Published var location: CLLocation?
     @Published var authorizationStatus: CLAuthorizationStatus
@@ -24,6 +24,10 @@ class LocationManager: NSObject, ObservableObject {
     
     func requestLocation() {
         locationManager.requestLocation()
+    }
+    
+    func getAuthorizationStatus() -> CLAuthorizationStatus {
+        return locationManager.authorizationStatus()
     }
 }
 

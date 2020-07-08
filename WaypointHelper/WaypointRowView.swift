@@ -11,7 +11,7 @@ import CoreLocation
 struct WaypointRowView: View {
     
     let waypoint: Waypoint
-    @State private var distance = CLLocationDistance()
+    @State var distance: CLLocationDistance?
     
     var body: some View {
         HStack {
@@ -20,9 +20,15 @@ struct WaypointRowView: View {
                 .padding(.horizontal)
             Text(waypoint.name ?? "")
             Spacer()
-            Text("\(distance)")
-                .font(.system(.title3))
-                .padding(.trailing)
+            Group {
+                if let distance = distance {
+                    Text("\(distance)")
+                        .font(.system(.title3))
+                        .padding(.trailing)
+                } else {
+                    Image(systemName: "location.slash")
+                }
+            }
         }
     }
 }
