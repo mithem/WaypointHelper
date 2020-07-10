@@ -14,6 +14,7 @@ struct WaypointRowView: View {
     @StateObject var locationManager: LocationManager
     @State private var distance: CLLocationDistance?
     @State private var formattedDistance = ""
+    @State private var rotation = Angle()
     
     var body: some View {
         HStack {
@@ -26,6 +27,8 @@ struct WaypointRowView: View {
                 Text(formattedDistance)
                     .font(.system(.title3))
                     .padding(.leading)
+                Image(systemName: "location.circle")
+                    .rotationEffect(rotation)
             } else {
                 Image(systemName: "location.slash")
             }
@@ -35,10 +38,16 @@ struct WaypointRowView: View {
         }
     }
     
+    func computeRotation() {
+        guard let loc = locationManager.location else { rotation = Angle(); return }
+        rotation = Angle(degrees: loc.course - (waypoint.location?.course ?? 0))
+    }
+    
     func getDistance() {
         guard let loc = locationManager.location else { distance = nil; return }
         distance = waypoint.location?.distance(from: loc)
         formattedDistance = formatDistance(distance: distance) ?? ""
+        computeRotation()
     }
 }
 

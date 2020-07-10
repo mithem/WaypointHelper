@@ -25,14 +25,12 @@ struct WaypointListView: View {
             List {
                 Text("Accuracy: \(formatDistance(distance: locationManager.trueAccuracy) ?? "unkown")")
                     .foregroundColor(.secondary)
-                ForEach(waypoints) { waypoint in
-                    NavigationLink(destination: WaypointMapView(waypoint: waypoint)) {
-                        WaypointRowView(waypoint: waypoint, locationManager: locationManager)
-                    }
+                ForEach(waypoints) { waypoint -> WaypointRowView in
+                    WaypointRowView(waypoint: waypoint, locationManager: locationManager)
                 }
                 .onDelete { offsets in
-                        waypoints.remove(atOffsets: offsets)
-                        saveWaypoints()
+                    waypoints.remove(atOffsets: offsets)
+                    saveWaypoints()
                 }
                 Button(action: {
                     showResetWaypointsActionSheet = true
