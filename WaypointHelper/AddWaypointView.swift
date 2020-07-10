@@ -28,6 +28,15 @@ struct AddWaypointView: View {
                             WaypointTypeImage(type: "arrow.up", delegate: self)
                             WaypointTypeImage(type: "arrow.turn.up.left", delegate: self)
                             WaypointTypeImage(type: "arrow.turn.up.right", delegate: self)
+                            WaypointTypeImage(type: "arrow.up.left", delegate: self)
+                            WaypointTypeImage(type: "arrow.up.right", delegate: self)
+                            WaypointTypeImage(type: "arrow.uturn.down", delegate: self)
+                            Spacer()
+                        }
+                        HStack {
+                            WaypointTypeImage(type: "mappin", delegate: self)
+                            WaypointTypeImage(type: "flag", delegate: self)
+                            Spacer()
                         }
                     }
                 }
@@ -59,7 +68,7 @@ struct WaypointTypeImage: View {
     var body: some View {
         Image(systemName: type)
             .font(.system(size: 26))
-            .padding()
+            .padding(50)
             .background(Color.gray.opacity(0.4))
             .frame(width: 50, height: 50)
             .clipShape(RoundedRectangle(cornerRadius: 12))

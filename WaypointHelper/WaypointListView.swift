@@ -19,6 +19,7 @@ struct WaypointListView: View {
     @State private var showingResetWaypointsActionSheet = false
     @StateObject var locationManager = LocationManager()
     @State private var currentLocation: CLLocation?
+    @State private var waypointChanged = false
     
     var body: some View {
         NavigationView {
@@ -34,7 +35,17 @@ struct WaypointListView: View {
                         Image(systemName: waypoint.type)
                             .font(.system(size: 26, design: .rounded))
                             .padding(.trailing)
+                            .onTapGesture {
+                                waypoint.disabled.toggle()
+                                saveWaypoints()
+                                waypointChanged.toggle()
+                            }
                         Text(waypoint.name ?? "")
+                            .onTapGesture {
+                                waypoint.disabled.toggle()
+                                saveWaypoints()
+                                waypointChanged.toggle()
+                            }
                         Spacer()
                         if let distance = getDistance(for: waypoint.location) {
                             Text(formatDistance(distance) ?? "unknown")
@@ -45,7 +56,10 @@ struct WaypointListView: View {
                         } else {
                             Image(systemName: "location.slash")
                         }
+                        if waypointChanged {} // doesn't feel too good..
                     }
+                    .foregroundColor(waypoint.disabled ? Color.secondary : (colorScheme == .dark ? Color.white : .black))
+                    .transition(.opacity)
                 }
                 .onDelete { offsets in
                     waypoints.remove(atOffsets: offsets)

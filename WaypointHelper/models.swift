@@ -14,6 +14,7 @@ class Waypoint: NSObject, NSSecureCoding, Identifiable {
     func encode(with coder: NSCoder) {
         coder.encode(name, forKey: "name")
         coder.encode(type, forKey: "type")
+        coder.encode(disabled, forKey: "disabled")
         coder.encode(latitude, forKey: "latitude")
         coder.encode(longitude, forKey: "longitude")
     }
@@ -21,6 +22,7 @@ class Waypoint: NSObject, NSSecureCoding, Identifiable {
     required init?(coder: NSCoder) {
         self.name = coder.decodeObject(forKey: "name") as? String
         self.type = (coder.decodeObject(forKey: "type") as? String) ?? "arrow.up"
+        self.disabled = coder.decodeBool(forKey: "disabled")
         self.latitude = coder.decodeObject(forKey: "latitude") as? Double
         self.longitude = coder.decodeObject(forKey: "longitude") as? Double
         guard let lat = latitude else { return }
@@ -31,6 +33,7 @@ class Waypoint: NSObject, NSSecureCoding, Identifiable {
     let id = UUID()
     let name: String?
     var type: String
+    var disabled: Bool
     var location: CLLocation?
     var latitude: Double?
     var longitude: Double?
@@ -38,6 +41,7 @@ class Waypoint: NSObject, NSSecureCoding, Identifiable {
     init(type: String, location: CLLocation? = nil, name: String? = nil) {
         self.name = name
         self.type = type
+        disabled = false
         guard let loc = location else { return }
         self.location = loc
         latitude = loc.coordinate.latitude
