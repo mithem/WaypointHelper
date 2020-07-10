@@ -82,7 +82,7 @@ struct WaypointLocationInlineView: View {
             if location != nil {
                 HStack {
                     Image(systemName: "location")
-                    Text("Accuracy: \(formatDistance(distance: location?.horizontalAccuracy) ?? "unknown")")
+                    Text("Accuracy: \(formatDistance(location?.horizontalAccuracy) ?? "unknown")")
                 }
             } else {
                 HStack {

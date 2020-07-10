@@ -15,13 +15,23 @@
 		494A520024B483E70048C001 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 494A51FE24B483E70048C001 /* LaunchScreen.storyboard */; };
 		494A520824B484370048C001 /* WaypointListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494A520724B484370048C001 /* WaypointListView.swift */; };
 		494A520A24B4844E0048C001 /* models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494A520924B4844E0048C001 /* models.swift */; };
-		494A520C24B485730048C001 /* WaypointRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494A520B24B485730048C001 /* WaypointRowView.swift */; };
 		494A520E24B486030048C001 /* constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494A520D24B486030048C001 /* constants.swift */; };
 		494A521024B489E20048C001 /* AddWaypointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494A520F24B489E20048C001 /* AddWaypointView.swift */; };
+		49A6BCAC24B87A6500885716 /* SharedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A6BCAB24B87A6500885716 /* SharedTests.swift */; };
 		49B4883D24B4A1D700CA36C8 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B4883C24B4A1D700CA36C8 /* LocationManager.swift */; };
 		49CA668724B651D6005F0C6F /* shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CA668624B651D6005F0C6F /* shared.swift */; };
 		49CA668924B659EC005F0C6F /* WaypointMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CA668824B659EC005F0C6F /* WaypointMapView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		49A6BCA624B87A4500885716 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 494A51E824B483E70048C001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 494A51EF24B483E70048C001;
+			remoteInfo = WaypointHelper;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		494A51F024B483E70048C001 /* WaypointHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaypointHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -34,9 +44,11 @@
 		494A520124B483E70048C001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		494A520724B484370048C001 /* WaypointListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaypointListView.swift; sourceTree = "<group>"; };
 		494A520924B4844E0048C001 /* models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = models.swift; sourceTree = "<group>"; };
-		494A520B24B485730048C001 /* WaypointRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaypointRowView.swift; sourceTree = "<group>"; };
 		494A520D24B486030048C001 /* constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constants.swift; sourceTree = "<group>"; };
 		494A520F24B489E20048C001 /* AddWaypointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWaypointView.swift; sourceTree = "<group>"; };
+		49A6BCA124B87A4500885716 /* WaypointHelperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WaypointHelperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		49A6BCA524B87A4500885716 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49A6BCAB24B87A6500885716 /* SharedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTests.swift; sourceTree = "<group>"; };
 		49B4883C24B4A1D700CA36C8 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		49CA668624B651D6005F0C6F /* shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shared.swift; sourceTree = "<group>"; };
 		49CA668824B659EC005F0C6F /* WaypointMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaypointMapView.swift; sourceTree = "<group>"; };
@@ -50,6 +62,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		49A6BC9E24B87A4500885716 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -57,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				494A51F224B483E70048C001 /* WaypointHelper */,
+				49A6BCA224B87A4500885716 /* WaypointHelperTests */,
 				494A51F124B483E70048C001 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -65,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				494A51F024B483E70048C001 /* WaypointHelper.app */,
+				49A6BCA124B87A4500885716 /* WaypointHelperTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -78,7 +99,6 @@
 				494A51F524B483E70048C001 /* SceneDelegate.swift */,
 				494A51F724B483E70048C001 /* ContentView.swift */,
 				494A520724B484370048C001 /* WaypointListView.swift */,
-				494A520B24B485730048C001 /* WaypointRowView.swift */,
 				49CA668824B659EC005F0C6F /* WaypointMapView.swift */,
 				49CA668624B651D6005F0C6F /* shared.swift */,
 				494A520D24B486030048C001 /* constants.swift */,
@@ -97,6 +117,15 @@
 				494A51FC24B483E70048C001 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		49A6BCA224B87A4500885716 /* WaypointHelperTests */ = {
+			isa = PBXGroup;
+			children = (
+				49A6BCAB24B87A6500885716 /* SharedTests.swift */,
+				49A6BCA524B87A4500885716 /* Info.plist */,
+			);
+			path = WaypointHelperTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,6 +148,24 @@
 			productReference = 494A51F024B483E70048C001 /* WaypointHelper.app */;
 			productType = "com.apple.product-type.application";
 		};
+		49A6BCA024B87A4500885716 /* WaypointHelperTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49A6BCA824B87A4500885716 /* Build configuration list for PBXNativeTarget "WaypointHelperTests" */;
+			buildPhases = (
+				49A6BC9D24B87A4500885716 /* Sources */,
+				49A6BC9E24B87A4500885716 /* Frameworks */,
+				49A6BC9F24B87A4500885716 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				49A6BCA724B87A4500885716 /* PBXTargetDependency */,
+			);
+			name = WaypointHelperTests;
+			productName = WaypointHelperTests;
+			productReference = 49A6BCA124B87A4500885716 /* WaypointHelperTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -130,6 +177,10 @@
 				TargetAttributes = {
 					494A51EF24B483E70048C001 = {
 						CreatedOnToolsVersion = 12.0;
+					};
+					49A6BCA024B87A4500885716 = {
+						CreatedOnToolsVersion = 12.0;
+						TestTargetID = 494A51EF24B483E70048C001;
 					};
 				};
 			};
@@ -147,6 +198,7 @@
 			projectRoot = "";
 			targets = (
 				494A51EF24B483E70048C001 /* WaypointHelper */,
+				49A6BCA024B87A4500885716 /* WaypointHelperTests */,
 			);
 		};
 /* End PBXProject section */
@@ -162,6 +214,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		49A6BC9F24B87A4500885716 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -169,7 +228,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				494A520C24B485730048C001 /* WaypointRowView.swift in Sources */,
 				494A520A24B4844E0048C001 /* models.swift in Sources */,
 				494A51F424B483E70048C001 /* AppDelegate.swift in Sources */,
 				494A520E24B486030048C001 /* constants.swift in Sources */,
@@ -183,7 +241,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		49A6BC9D24B87A4500885716 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49A6BCAC24B87A6500885716 /* SharedTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		49A6BCA724B87A4500885716 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 494A51EF24B483E70048C001 /* WaypointHelper */;
+			targetProxy = 49A6BCA624B87A4500885716 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		494A51FE24B483E70048C001 /* LaunchScreen.storyboard */ = {
@@ -357,6 +431,46 @@
 			};
 			name = Release;
 		};
+		49A6BCA924B87A4500885716 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MHQFP8C3YS;
+				INFOPLIST_FILE = WaypointHelperTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = mithem.WaypointHelperTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WaypointHelper.app/WaypointHelper";
+			};
+			name = Debug;
+		};
+		49A6BCAA24B87A4500885716 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MHQFP8C3YS;
+				INFOPLIST_FILE = WaypointHelperTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = mithem.WaypointHelperTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WaypointHelper.app/WaypointHelper";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -374,6 +488,15 @@
 			buildConfigurations = (
 				494A520524B483E70048C001 /* Debug */,
 				494A520624B483E70048C001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		49A6BCA824B87A4500885716 /* Build configuration list for PBXNativeTarget "WaypointHelperTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49A6BCA924B87A4500885716 /* Debug */,
+				49A6BCAA24B87A4500885716 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

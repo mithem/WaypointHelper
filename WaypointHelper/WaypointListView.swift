@@ -16,24 +16,43 @@ struct WaypointListView: View {
     @State private var showingAddWaypointView = false
     @State private var reversed = false
     @State private var resetBtnDisabled = true
-    @State private var showResetWaypointsActionSheet = false
+    @State private var showingResetWaypointsActionSheet = false
     @StateObject var locationManager = LocationManager()
     @State private var currentLocation: CLLocation?
     
     var body: some View {
         NavigationView {
             List {
-                Text("Accuracy: \(formatDistance(distance: locationManager.trueAccuracy) ?? "unkown")")
-                    .foregroundColor(.secondary)
-                ForEach(waypoints) { waypoint -> WaypointRowView in
-                    WaypointRowView(waypoint: waypoint, locationManager: locationManager)
+                Button(action: {
+                    getLocation()
+                }) {
+                    Text("Accuracy: \(formatAccuracy(distance: locationManager.trueAccuracy, course: locationManager.courseAccuracy))")
+                        .foregroundColor(.secondary)
+                }
+                ForEach(waypoints) { waypoint in
+                    HStack {
+                        Image(systemName: waypoint.type)
+                            .font(.system(size: 26, design: .rounded))
+                            .padding(.trailing)
+                        Text(waypoint.name ?? "")
+                        Spacer()
+                        if let distance = getDistance(for: waypoint.location) {
+                            Text(formatDistance(distance) ?? "unknown")
+                                .font(.system(.title3))
+                                .padding(.leading)
+                            Image(systemName: "location.circle")
+                                .rotationEffect(Angle(degrees: locationManager.location?.course ?? 0) - (getHeading(l1: locationManager.location, l2: waypoint.location) ?? Angle()))
+                        } else {
+                            Image(systemName: "location.slash")
+                        }
+                    }
                 }
                 .onDelete { offsets in
                     waypoints.remove(atOffsets: offsets)
                     saveWaypoints()
                 }
                 Button(action: {
-                    showResetWaypointsActionSheet = true
+                    showingResetWaypointsActionSheet = true
                 }) {
                     if resetBtnDisabled {
                         Text("Reset")
@@ -47,10 +66,9 @@ struct WaypointListView: View {
             .onDisappear(perform: saveWaypoints)
             .navigationBarTitle("My waypoints")
             .navigationBarItems(leading: Button(action: {
-                withAnimation {
+                withAnimation() {
                     reverseWaypoints()
                 }
-                getLocation()
             }) {
                 if colorScheme == .dark {
                     Image(systemName: reversed ? "flag.slash.circle" : "flag.circle")
@@ -76,16 +94,18 @@ struct WaypointListView: View {
             })
             .onAppear(perform: loadWaypoints)
             .onAppear(perform: getLocation)
-            .onAppear {
-                locationManager.subscribe(self)
-            }
-            .actionSheet(isPresented: $showResetWaypointsActionSheet) {
+            .actionSheet(isPresented: $showingResetWaypointsActionSheet) {
                 ActionSheet(title: Text("Reset waypoints?"), message: Text("This action cannot be undone."), buttons: [.destructive(Text("Reset")){resetWaypoints()}, .cancel()])
             }
         }
         .sheet(isPresented: $showingAddWaypointView) {
             AddWaypointView(delegate: self, locationManager: locationManager)
         }
+    }
+    
+    func getDistance(for location: CLLocation?) -> CLLocationDistance? {
+        guard let loc = locationManager.location else { return nil }
+        return location?.distance(from: loc)
     }
     
     func getLocation() {
@@ -99,11 +119,10 @@ struct WaypointListView: View {
     
     func reverseWaypoints() {
         reversed.toggle()
-        var new = [Waypoint]()
-        for waypoint in waypoints.reversed() {
-            new.append(Waypoint(type: waypointTypeOpposites[waypoint.type] ?? waypoint.type, name: waypoint.name))
+        for waypoint in waypoints {
+            waypoint.type = waypointTypeOpposites[waypoint.type] ?? waypoint.type
         }
-        waypoints = new
+        waypoints.reverse()
     }
     
     func loadWaypoints() {
@@ -134,12 +153,6 @@ struct WaypointListView: View {
         let ud = UserDefaults()
         let waypointsArr = waypoints.map { waypoint in try! NSKeyedArchiver.archivedData(withRootObject: waypoint, requiringSecureCoding: true) }
         ud.set(waypointsArr, forKey: "waypoints")
-    }
-}
-
-extension WaypointListView: LocationManagerSubscriber {
-    func didUpdateLocation() {
-        currentLocation = locationManager.location
     }
 }
 
