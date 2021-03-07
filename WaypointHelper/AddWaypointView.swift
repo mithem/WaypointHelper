@@ -22,20 +22,28 @@ struct AddWaypointView: View {
             Form {
                 TextField("name", text: $name)
                 WaypointLocationInlineView(location: location)
-                ScrollView {
-                    VStack(spacing: 20) {
+                ScrollView([.horizontal, .vertical]) {
+                    VStack(spacing: 10) {
                         HStack {
                             WaypointTypeImage(type: "arrow.up", delegate: self)
+                                .padding(10)
                             WaypointTypeImage(type: "arrow.turn.up.left", delegate: self)
+                                .padding(10)
                             WaypointTypeImage(type: "arrow.turn.up.right", delegate: self)
+                                .padding(10)
                             WaypointTypeImage(type: "arrow.up.left", delegate: self)
+                                .padding(10)
                             WaypointTypeImage(type: "arrow.up.right", delegate: self)
+                                .padding(10)
                             WaypointTypeImage(type: "arrow.uturn.down", delegate: self)
+                                .padding(10)
                             Spacer()
                         }
                         HStack {
                             WaypointTypeImage(type: "mappin", delegate: self)
+                                .padding(10)
                             WaypointTypeImage(type: "flag", delegate: self)
+                                .padding(10)
                             Spacer()
                         }
                     }
@@ -43,6 +51,9 @@ struct AddWaypointView: View {
             }
             .onAppear(perform: getLocation)
             .navigationTitle("New Waypoint")
+            .navigationBarItems(trailing: Button("Cancel") {
+                presentationMode.wrappedValue.dismiss()
+            })
         }
     }
     

@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-let waypointsForPreviews = [Waypoint(type: "arrow.up", location: CLLocation(), name: "Kreisverkehr"), Waypoint(type: "arrow.turn.up.left", location: CLLocation()), Waypoint(type: "arrow.turn.up.right", location: CLLocation(), name: "großer Baum")]
+let waypointsForPreviews = [Waypoint(type: "arrow.up", location: CLLocation(), name: "Roundabout"), Waypoint(type: "arrow.turn.up.left", location: CLLocation()), Waypoint(type: "arrow.turn.up.right", location: CLLocation(), name: "tree")]
 
 let waypointTypes = ["arrow.up", "arrow.turn.up.left", "arrow.turn.up.right", "mappin", "flag", "arrow.uturn.down", "arrow.up.left", "arrow.up.right"]
 

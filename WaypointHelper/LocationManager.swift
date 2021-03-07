@@ -31,10 +31,6 @@ class LocationManager: NSObject, ObservableObject {
     func requestLocation() {
         locationManager.requestLocation()
     }
-    
-    func getAuthorizationStatus() -> CLAuthorizationStatus {
-        return locationManager.authorizationStatus()
-    }
 }
 
 extension LocationManager: CLLocationManagerDelegate {
@@ -45,14 +41,16 @@ extension LocationManager: CLLocationManagerDelegate {
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        let authStatus = manager.authorizationStatus()
-        
-        if authStatus == .authorizedWhenInUse || authStatus == .authorizedAlways {
+        if authorizationStatus == .authorizedWhenInUse || authorizationStatus == .authorizedAlways {
             requestLocation()
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        authorizationStatus = status
     }
 }

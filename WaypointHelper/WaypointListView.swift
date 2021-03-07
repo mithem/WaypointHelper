@@ -52,14 +52,13 @@ struct WaypointListView: View {
                                 .font(.system(.title3))
                                 .padding(.leading)
                             Image(systemName: "location.circle")
-                                .rotationEffect(Angle(degrees: locationManager.location?.course ?? 0) - (getHeading(l1: locationManager.location, l2: waypoint.location) ?? Angle()))
+                                .rotationEffect((getHeading(l1: locationManager.location, l2: waypoint.location) ?? Angle()) - Angle(degrees: locationManager.location?.course ?? 0))
                         } else {
                             Image(systemName: "location.slash")
                         }
                         if waypointChanged {} // doesn't feel too good..
                     }
                     .foregroundColor(waypoint.disabled ? Color.secondary : (colorScheme == .dark ? Color.white : .black))
-                    .transition(.opacity)
                 }
                 .onDelete { offsets in
                     waypoints.remove(atOffsets: offsets)
@@ -76,13 +75,13 @@ struct WaypointListView: View {
                             .foregroundColor(.red)
                     }
                 }.disabled(resetBtnDisabled)
+                .animation(.linear)
             }
+            .animation(.easeInOut)
             .onDisappear(perform: saveWaypoints)
             .navigationBarTitle("My waypoints")
             .navigationBarItems(leading: Button(action: {
-                withAnimation() {
-                    reverseWaypoints()
-                }
+                reverseWaypoints()
             }) {
                 if colorScheme == .dark {
                     Image(systemName: reversed ? "flag.slash.circle" : "flag.circle")
@@ -127,7 +126,7 @@ struct WaypointListView: View {
     }
     
     func resetWaypoints() {
-        waypoints = []
+        waypoints.removeAll()
         saveWaypoints()
     }
     
