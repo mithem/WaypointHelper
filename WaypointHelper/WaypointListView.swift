@@ -77,6 +77,7 @@ struct WaypointListView: View {
                 }.disabled(resetBtnDisabled)
                 .animation(.linear)
             }
+            .listStyle(PlainListStyle())
             .animation(.easeInOut)
             .onDisappear(perform: saveWaypoints)
             .navigationBarTitle("My waypoints")

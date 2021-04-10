@@ -23,7 +23,7 @@ struct AddWaypointView: View {
                 TextField("name", text: $name)
                 WaypointLocationInlineView(location: location)
                 ScrollView([.horizontal, .vertical]) {
-                    VStack(spacing: 10) {
+                    VStack(alignment: .leading, spacing: 10) {
                         HStack {
                             WaypointTypeImage(type: "arrow.up", delegate: self)
                                 .padding(10)
@@ -37,14 +37,12 @@ struct AddWaypointView: View {
                                 .padding(10)
                             WaypointTypeImage(type: "arrow.uturn.down", delegate: self)
                                 .padding(10)
-                            Spacer()
                         }
                         HStack {
                             WaypointTypeImage(type: "mappin", delegate: self)
                                 .padding(10)
                             WaypointTypeImage(type: "flag", delegate: self)
                                 .padding(10)
-                            Spacer()
                         }
                     }
                 }
